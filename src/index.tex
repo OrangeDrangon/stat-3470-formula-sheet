@@ -1,0 +1,270 @@
+\section{Basic Probability Rules}
+\begin{align}
+  P(A \cup B) = P(A) + P(B) - P(A \cap B) \\
+  P(A | B) = \frac{P(A \cap B)}{P(B)} \\
+  P(B) = P(A_1 \cap B) + \ldots + P(A_n \cap B) \\
+  P(B) = P(A_1)P(B | A_1) + \ldots + P(A_n)P(B | A_n) \\
+  P(A_n | B) = \frac{P(A_n)P(B | A_n)}{P(A_1)P(A_1 | B) + \ldots + P(A_n)P(B | A_n)}
+\end{align}
+
+\subsection{Independent}
+Two events are independent IFF:
+\begin{align}
+  P(A | B) = P(A) \\
+  P(B | A) = P(B) \\
+  P(A \cap B) = P(A)P(B) 
+\end{align}
+
+\section{Discrete Random Variables}
+Countably infinite or finite.
+
+\subsection{PMF}
+\begin{align}
+  X = \text{random variable} \\
+  x = \text{particular value of random variable $X$} \\
+  pmf(x) = P(X = x) = p(x) = f(x) \\
+  \forall x \in X, 0 \leq p(x) \leq 1 \\
+  \sum_{i=1}^{K} p(x_i) = 1
+\end{align}
+
+\subsection{CDF}
+\begin{align}
+  F(x) = P(X \leq x) \text{defined for $x$} \in \mathbb{R} \\
+  F(x) \geq 0 \\
+  F(x) \text{is increasing} \\
+  \lim_{x\to-\infty} F(x) = 0 \\
+  \lim_{x\to\infty} F(x) = 1
+\end{align}
+
+\subsection{Expected Values}
+\begin{align}
+  E(X) = \sum_{i}^{} x_ip(x_i) = M_X \\
+  E(aX + b) = aE(X) + b \\
+  E(h(X)) = \sum_{i}^{} h(x_i)p(x_i)
+\end{align}
+
+\subsection{Variance}
+\begin{align}
+  V(X) = \sigma^2_X \\
+  V(X) = \sum_{i}^{}(x_i - M_x)^2p(x_i) \\
+  V(X) = E(X^2) - E(X)^2 \\
+  V(aX + b) = a^2V(X)
+\end{align}
+
+\subsection{Standard Deviation}
+\begin{align}
+  SD(X) = \sigma_X \\
+  SD(X) = \sqrt{V(X)} \\
+  SD(aX + b) = \lvert a \rvert SD(X)
+\end{align}
+
+\subsection{Bernoulli}
+$X$ takes a value of $1$ with $p$ and $0$ with $1-p$.
+\begin{align}
+  X \sim Bern(x) \\
+  E(X) = p \\
+  V(X) = p(1 - p)
+\end{align}
+
+\subsection{Binomial}
+Binary, independent, and fixed number of trials with a fixed probability of success. Sum of independent Bernoulli random trials. $X$ is the number of successes.
+\begin{align}
+  X \sim Binom{n, p} \\
+  p(x) = \binom{n}{x}p^x(1 - p)^{n - x} \\
+  E(X) = np \\
+  V(X) = np(1 - p)
+\end{align}
+
+\subsection{Geometric}
+Independent Bernoulli trials until the first success. $X$ is the number of trials until the first success.
+\begin{align}
+  X \sim Geom(p) \\
+  f(x) = (1 - p)^{x - 1}p \\
+  E(X) = \frac{1}{p} \\
+  V(X) = \frac{1 - p}{p^2}
+\end{align}
+
+\subsection{Negative Binomial}
+$X$ is the number of trials until the $k^{\text{th}}$ success occurs.
+\begin{align}
+  X \sim NegBinom(k, p) \\
+  f(x) = \binom{x - 1}{k - 1}p^k(1 - p)^{x-k} \\
+  E(X) = \frac{k}{p} \\
+  V(X) = \frac{k(1 - p)}{p^2}
+\end{align}
+
+\subsection{Poisson}
+Counts the number of times something occurs in a given interval of time or space.
+\begin{align}
+  X \sim Poisson{M} \\
+  f(x) = {e^{-M}M^X}{x!} \\
+  E(X) = M \\
+  V(X) = M
+\end{align}
+
+\section{Continuous Random Variables}
+
+\subsection{PDF}
+\begin{align}
+  \forall x \in \mathbb{R}, f(x) \geq 0 \\
+  \int_{-\infty}^{\infty} f(x) dx = 1 \\
+  P(a \leq x \leq b) = \int_{a}^{b} f(x) dx
+\end{align}
+
+\subsection{CDF}
+\begin{align}
+  F(x) = P(X \leq x) \\
+  F(x) = \int_{-\infty}^{x} f(x') dx'
+\end{align}
+
+\subsection{Percentiles}
+Given by $\eta(p)$.
+\begin{align}
+  F(\eta(p)) = P
+\end{align}
+
+\subsection{Expected Value}
+\begin{align}
+  E(X) = \int_{-\infty}^{\infty} xf(x) dx \\
+  E(h(X)) = \int_{-\infty}^{\infty} h(x)f(x) dx
+\end{align}
+
+\subsection{Variance}
+\begin{align}
+  V(X) = \int_{-\infty}^{\infty} (x - M_X)^2f(x) dx \\
+  V(X) = E(X^2) - E(X)^2
+\end{align}
+
+\subsection{Uniform}
+\begin{align}
+  X \sim Uni(a, b) \\
+  f(x) = \begin{cases}
+    0 & x \leq a \\
+    \frac{1}{b - a} & a < x < b \\
+    0 & x \geq b
+  \end{cases} \\
+  F(x) = \begin{cases}
+    0 & x \leq a \\
+    \frac{x - a}{b - a} & a < x < b \\
+    1 & x \geq b
+  \end{cases} \\
+  E(X) = \frac{a + b}{2} \\
+  V(X) = \frac{(b - a)^2}{12}
+\end{align}
+
+\subsection{Normal}
+\begin{align}
+  X \sim N(M, \sigma^2) \\
+  f(x) = \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{1}{2}(\frac{x - M}{\sigma})^2} \\
+  F(x) = \int_{-\infty}^{x} f(x') dx' \\
+  E(X) = M \\
+  V(X) = \sigma^2 \\
+  aX + b \sim N(aM + b, a^2\sigma^2)
+\end{align}
+
+\subsubsection{Standard Normal}
+\begin{align}
+  Z \sim N(0, 1) \\
+  Z = \frac{x - M}{\sigma} \sim N(0, 1)
+\end{align}
+
+\subsection{Exponential}
+\begin{align}
+  X \sim Exp(\lambda) \\
+  f(x) = \begin{cases}
+    0 & x \leq 0 \\
+    \lambda e^{-\lambda x} & x > 0
+  \end{cases} \\
+  F(x) = 1 - e^{-\lambda x} \\
+  E(X) = \frac{1}{\lambda} \\
+  V(X) = \frac{1}{\lambda^2} \\
+  P(X \geq x) = e^{-\lambda x}
+\end{align}
+
+\subsubsection{Relation to Poisson}
+Distribution of time between successive events is $Exp(\alpha)$.
+\begin{align}
+  X \sim Poisson(\alpha t) \\
+  Y \sim Exp(\alpha)
+\end{align}
+
+\subsection{Gamma}
+\begin{align}
+  X \sim Gamma(\alpha, \beta) \\
+  f(x) = \frac{1}{\beta^{\alpha}\Gamma(\alpha)}x^{\alpha - 1}e^{-\frac{x}{\beta}} \\
+  E(X) = \alpha\beta \\
+  V(X) = \alpha\beta^2
+\end{align}
+
+\section{Combining Random Variables}
+\subsection{PMF}
+\subsubsection{Discrete}
+\begin{align}
+  pmf(x, y) = P(X = x, Y = y) \\
+  \forall x \in X, 0 \leq p(x) \leq 1 \\
+  \sum_{i, j}^{} p(x_i, y_j) = 1 \\
+  f_x(x) = \sum_{j}^{} f(x, y_j)
+\end{align}
+
+\subsubsection{Continuous}
+\begin{align}
+  \forall x \in \mathbb{R}, \forall y \in \mathbb{R}, f(x, y) \geq 0 \\
+  \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x, y) dx dy = 1 \\
+  f_x(x) = \int_{-\infty}^{\infty} f(x, y) dy
+\end{align}
+
+\subsection{Conditional Probability}
+\begin{align}
+  f(x | y) = P(X = x | Y = y) = \frac{P(X = x, Y = y)}{P(Y = y)} = \frac{f(x, y)}{f_y(y)}
+\end{align}
+
+\subsection{Independence}
+2 random variables are independent IFF
+\begin{align}
+  f(x | y) = f_x(x) \\
+  f(y | x) = f_y(y) \\
+  f(x, y) = f_x(x) * f_y(y)
+\end{align}
+
+\subsection{Expected Value}
+\begin{align}
+  E(h(X, Y)) = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} h(x, y) f(x, y) dx dy
+\end{align}
+
+\subsection{Covariance and Correlation}
+How the two random variables vary together. Positive means that as $X$ gets bigger $Y$ gets bigger and negative means as $X$ gets bigger $Y$ gets smaller. If $X$ and $Y$ are independent they will have a correlation of $0$. No correlation does not imply independence though. 
+\begin{align}
+  Cov(X, Y) = E(X - M_x)E(Y - M_y) \\
+  Cov(X, Y) = E(XY) - E(X)E(Y) \\
+  \rho = Corr(X, Y) = \frac{Cov(X, Y)}{\sigma_x\sigma_y}
+\end{align}
+
+\subsection{Sampling of Sample Mean}
+\begin{align}
+  \overbar{X} \sim N(M, \frac{\sigma^2}{n}) \\
+  E(\overbar{X}) = E(X) \\
+  V(\overbar{X}) = \frac{V(X)}{n}
+\end{align}
+
+\subsubsection{Central Limit Theorem}
+Can approximate a distribution as normal when sampled with $n \geq 30$.
+
+\subsection{Sampling of Sample Proportion}
+Can approximate $\hat{p}$ when $np \geq 10$ and $n(1 - p) \geq 10$.
+\begin{align}
+  \hat{p} = \frac{\text{successes}}{\text{trials}} \\
+  E(X) = p \\
+  SD(X) = \frac{p(1-p)}{n}
+\end{align}
+
+\subsection{Effect of Combination on Expected Value and Variance}
+\begin{align}
+  E(a_1X_1 + \ldots) = E(a_1X_1) + \ldots \\
+  V(\sum_{i=1}^{n} a_iX_i) = \sum_{i=1}^{n} \sum_{j=1}^{n} a_ia_jCov(x_i, x_j)
+\end{align}
+
+\subsubsection{Special Case}
+\begin{align}
+  E(X - Y) = E(X) - E(Y) \\
+  V(X - Y) = V(X) + V(Y) - 2 * Cov(X, Y)
+\end{align}
