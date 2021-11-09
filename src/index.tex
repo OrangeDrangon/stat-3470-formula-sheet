@@ -326,12 +326,12 @@ If $h$ is a well defined function of $\theta$ then $h(\theta) = h(\theta_{MLE})$
 \subsection{P}
 \begin{enumerate}
 \item (Simple) random sample
-\item $n\hat{p} \geq 10 \and n(1 - \hat{p}) \geq 10)$
+\item $n\hat{p} \geq 10$ and $ n(1 - \hat{p}) \geq 10$
 \end{enumerate}
 
 \begin{align}
   ME = Z\sqrt{\frac{\hat{p}(1-\hat{p})}{n}} \\
-  \overbar{x} \pm Z\frac{\sigma}{\sqrt{n}} \\
+  \overbar{x} \pm Z\sqrt{\frac{\hat{p}(1-\hat{p})}{n}} \\
   n = \frac{Z^2\hat{p}(1 - \hat{p})}{(ME)^2} \\
   \text{ROUND UP}
 \end{align}
@@ -372,7 +372,7 @@ Can only ever reject the null never prove the alternative.
 \item Write $H_0$ and $H_a$ and define parameters.
 \item Check assumptions.
   \begin{enumerate}
-  \item (Simple) Randome sample
+  \item (Simple) Random sample
   \item $\sigma$ is known
   \item X is normal or $n \geq 30$
   \end{enumerate}
@@ -392,8 +392,8 @@ Can only ever reject the null never prove the alternative.
 \item Write $H_0$ and $H_a$ and define parameters.
 \item Check assumptions.
   \begin{enumerate}
-  \item (Simple) Randome sample
-  \item n is large enough. $np_0 \geq 10 \and n(1 - p_0) \geq 10$
+  \item (Simple) Random sample
+  \item n is large enough. $np_0 \geq 10$ and $ n(1 - p_0) \geq 10$
   \end{enumerate}
 \item Calculate test statistic and compute p-value.
   \begin{align}
@@ -408,7 +408,7 @@ Can only ever reject the null never prove the alternative.
 \item Write $H_0$ and $H_a$ and define parameters.
 \item Check assumptions.
   \begin{enumerate}
-  \item (Simple) Randome sample
+  \item (Simple) Random sample
   \item $\sigma$ is not known
   \item X is normal or $n \geq 30$. NOTE: may need to use graph of data to check reasonably symmetric data if n is to small as this is often when this is applied.
   \end{enumerate}
