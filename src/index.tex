@@ -331,7 +331,7 @@ If $h$ is a well defined function of $\theta$ then $h(\theta) = h(\theta_{MLE})$
 
 \begin{align}
   ME = Z\sqrt{\frac{\hat{p}(1-\hat{p})}{n}} \\
-  \overbar{x} \pm Z\sqrt{\frac{\hat{p}(1-\hat{p})}{n}} \\
+  \hat{p} \pm Z\sqrt{\frac{\hat{p}(1-\hat{p})}{n}} \\
   n = \frac{Z^2\hat{p}(1 - \hat{p})}{(ME)^2} \\
   \text{ROUND UP}
 \end{align}
@@ -351,7 +351,8 @@ If $h$ is a well defined function of $\theta$ then $h(\theta) = h(\theta_{MLE})$
 \begin{align}
   df = n - 1 \\
   t = \frac{x - \overbar{x}}{s} \\
-  ME = t\frac{s}{\sqrt{n}}
+  ME = t\frac{s}{\sqrt{n}} \\
+  \overbar{x} \pm t\frac{s}{\sqrt{n}}
 \end{align}
 
 \subsection{Prediction interval}
