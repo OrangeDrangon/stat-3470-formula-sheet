@@ -1,0 +1,82 @@
+\section{Basics of Linear Regression}
+\begin{align}
+  r = \frac{1}{n-1} \sum_{i=1}^n \left( \frac{x_i - \overbar{x}}{s_X)}  \right) \left( \frac{y_i - \overbar{y}}{s_Y)}  \right) \\
+  y = f(x) + \epsilon \\
+  \hat{Y} = \hat{\beta_0} + \hat{\beta_1}x \\
+  \hat{\beta_1} = \frac{S_{XY}}{S_{XX}} \\
+  \hat{\beta_0} = \overbar{y} - \hat{\beta_1}\overbar{x} \\
+  S_{XY} = \sum_{i=1}^n (x_i - \overbar{x})(y_i - \overbar{y}) \\
+  S_{XX} = \sum_{i=1}^n (x_i - \overbar{x})^2
+\end{align}
+
+\section{Assumptions for Linear Regression}
+\begin{enumerate}
+\item \textbf{L}inearity
+\item \textbf{I}ndependence
+\item \textbf{N}ormality
+\item \textbf{E}qual Variance
+\end{enumerate}
+
+\begin{align}
+  E(\epsilon_i) = 0 \\
+  \text{$\epsilon_i$s are independent} \\
+  \text{$\epsilon_i$ is normal RV} \\
+  Var(\epsilon_i) = \sigma^2 \\
+  \epsilon_i^{iid} \sim N(0, \sigma^2) \\
+  E(Y_i) = \beta_0 + \beta_1x_i \\
+  Var(Y_i) = Var(\epsilon_i) = \sigma^2 \\
+  Y_i \sim N(\beta_0 + \beta_1x_i, \sigma^2)
+\end{align}
+
+\subsection{Estimate $\sigma^2$}
+\begin{align}
+  \hat{\sigma^2} = s^2 = \frac{\sum (y_i - \hat{y_i})^2}{n-2}
+\end{align}
+
+\section{F-test and Anova Table}
+\begin{align}
+  SSE = \sum (y_i - \hat{y_i})^2 \\
+  SSR = \sum (\hat{y_i} - \overbar{y})^2 \\
+  SST = \sum (y_i - \overbar{y})^2 \\
+  SST = SSE + SSR \\
+  r^2 = \frac{SSR}{SST}
+\end{align}
+
+\begin{center}
+  \begin{tabular}{|c|c|c|c|c|c|}
+    \hline
+    Source & SS & df & MS & F & p-value \\
+    \hline
+    regression & SSR & $p$ & \fbox{$MSR = \frac{SSR}{p}$} & \fbox{$\frac{MSR}{MSE}$} & p \\
+    \hline
+    error & SSE & $n-p-1$ & \fbox{$\frac{SSE}{n-p-1} = s^2$} && \\
+    \hline
+    total & SST & $n-1$ &&& \\
+    \hline
+  \end{tabular}
+\end{center}
+
+\section{Inference for $\beta_1$}
+\begin{align}
+  \hat{\beta_1} \sim N(\beta_1, \frac{\sigma^2}{S_{XX}} \\
+  \hat{\beta_1} \pm t_{\frac{\alpha}{2},n-p-1} * \frac{s}{\sqrt{S_{XX}}} \\
+  t_{obs} = \sqrt{S_{XX}}\frac{\hat{\beta_1} - \hat{\beta_{10}}}{s}
+\end{align}
+
+\section{Inference for $\mu_{Y|X=x^*}$}
+\begin{align}
+  Var(\hat{Y}) = \sigma^2 \left[ \frac{1}{n} + \frac{(x^* - \overbar{x})^2}{S_{XX}} \right] \\
+  CI = \hat{Y} \pm t_{\frac{\alpha}{2}, n-p-1} * \sqrt{Var(\hat{Y})} \\
+  PI = \hat{Y} \pm t_{\frac{\alpha}{2}, n-p-1} * \sqrt{1 + \frac{1}{n} + \frac{(x^* - \overbar{x})^2}{S_{XX}}}
+  PI = \hat{Y} \pm t_{\frac{\alpha}{2}, n-p-1} * \sqrt{s^2 + s_{\hat{Y}}^2}
+\end{align}
+
+\section{Goodness of Fit}
+\begin{enumerate}
+\item SRS
+\item all expected $\geq 5$  
+\end{enumerate}
+
+\begin{align}
+  \chi^2 = \sum \frac{(observed - expected)^2}{expected}
+\end{align}
