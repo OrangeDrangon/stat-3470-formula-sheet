@@ -1,0 +1,179 @@
+\section{Estimation}
+\subsection{Bias}
+\begin{align}
+  Bias(\hat{\theta}) = E(\hat{\theta}) - \theta \\
+  Unbiased \iff E(\hat{\theta}) = \theta \\
+  MSE(\hat{\theta}) = E((\hat{\theta} - \theta)^2) = Var(\hat{\theta}) + Bias(\hat{\theta})^2
+\end{align}
+
+\subsection{Method of Moments (MOM)}
+\begin{enumerate}
+\item Find expressions for the first $k$ population moments. $E(X), E(X^2), \cdots, E(X^k)$
+\item Set those expressions equal to the first $k$ sample momments.
+  \begin{align}
+    E(X) = \overbar{x} \\
+    E(X^2) = \overbar{x^2} \\
+    \cdots
+  \end{align}
+\item Solve the system of $k$ equations and unknowns.
+\item Hattify all the $\theta$s to get estimates called $\hat{\theta}_{MOM}$
+\end{enumerate}
+
+\subsubsection{Useful Notes}
+\begin{align}
+  E(X^2) = V(X^2) + E(X)^2 \\
+  \overbar{x^2} - \overbar{x}^2 = \frac{n - 1}{n}s^2
+\end{align}
+
+\subsection{Maximum Likelihood (MLE)}
+\begin{enumerate}
+\item Find $L(\theta) = \prod_{i=1}^n f_{x_i}(X_i; \theta_1, \theta_2, \cdots, \theta_k)$
+\item Take the $\ln$ of $L(\theta)$ to get log likelihood $l(\theta)$
+\item Take $\diff{l(\theta)}{\theta}$
+\item Solve $\diff{l(\theta)}{\theta} = 0$ for $\theta$
+\item Hattify $\theta$ to get $\hat{\theta}_{MLE}$
+\item Verify the second derivative is negative to ensure it is a local maxima.
+\end{enumerate}
+
+\subsubsection{Invariance}
+If $h$ is a well defined function of $\theta$ then $h(\theta) = h(\theta_{MLE})$
+
+\section{Confidence Intervals}
+\subsection{$\mu$; $\sigma$ known}
+\begin{enumerate}
+\item (Simple) random sample
+\item X is normal or $n \geq 30$
+\end{enumerate}
+
+\begin{align}
+  (ME) = Z\frac{\sigma}{\sqrt{n}} \\
+  \overbar{x} \pm Z\frac{\sigma}{\sqrt{n}} \\
+  n = \frac{Z^2\sigma^2}{(ME)^2} \\
+  \text{ROUND UP}
+\end{align}
+
+\subsection{P}
+\begin{enumerate}
+\item (Simple) random sample
+\item $n\hat{p} \geq 10$ and $ n(1 - \hat{p}) \geq 10$
+\end{enumerate}
+
+\begin{align}
+  ME = Z\sqrt{\frac{\hat{p}(1-\hat{p})}{n}} \\
+  \hat{p} \pm Z\sqrt{\frac{\hat{p}(1-\hat{p})}{n}} \\
+  n = \frac{Z^2\hat{p}(1 - \hat{p})}{(ME)^2} \\
+  \text{ROUND UP}
+\end{align}
+
+\subsubsection{Unknown $\hat{p}$}
+\begin{enumerate}
+\item Guess using previous data
+\item Use worst case of $\hat{p} = 0.5$ (Conservative Approach)'
+\end{enumerate}
+
+\subsection{$\mu$; Unknown $\sigma$}
+\begin{enumerate}
+\item (Simple) random sample
+\item X is normal or n is large enough to approximate normal. NOTE: we often looke for symmetrical data to say this is roughly met as this often needs to be applied with a small sample size.
+\end{enumerate}
+
+\begin{align}
+  df = n - 1 \\
+  t = \frac{x - \overbar{x}}{s} \\
+  ME = t\frac{s}{\sqrt{n}} \\
+  \overbar{x} \pm t\frac{s}{\sqrt{n}}
+\end{align}
+
+\subsection{Prediction interval}
+\begin{enumerate}
+\item (Simple) random sample
+\item X comes from a normal distribution
+\end{enumerate}
+
+\begin{align}
+  \overbar{x} \pm t * s\sqrt{1 + \frac{1}{n}}
+\end{align}
+
+\section{Hypothesis Tests}
+Can only ever reject the null never prove the alternative.
+
+\subsection{$\mu$; Known $\sigma$}
+\begin{enumerate}
+\item Write $H_0$ and $H_a$ and define parameters.
+\item Check assumptions.
+  \begin{enumerate}
+  \item (Simple) Random sample
+  \item $\sigma$ is known
+  \item X is normal or $n \geq 30$
+  \end{enumerate}
+\item Calculate test statistic and compute p-value.
+  \begin{align}
+    Z_{obs} = \frac{\overbar{x} - \mu_0}{\frac{\sigma}{\sqrt{n}}} \\
+    H_a : \mu > \mu_0 \text{ right tail } P(Z > Z_{obs}) \\
+    H_a : \mu < \mu_0 \text{ left tail } P(Z < Z_{obs}) \\
+    H_a : \mu \ne \mu_0 \text{ both tails } 2*P(Z > \lvert Z_{obs}\rvert)
+  \end{align}
+\item Comapre p-value to $\alpha$. If $\alpha$ not provided use $\alpha = 0.05$
+\item Write conclution in context
+\end{enumerate}
+
+\subsection{P}
+\begin{enumerate}
+\item Write $H_0$ and $H_a$ and define parameters.
+\item Check assumptions.
+  \begin{enumerate}
+  \item (Simple) Random sample
+  \item n is large enough. $np_0 \geq 10$ and $ n(1 - p_0) \geq 10$
+  \end{enumerate}
+\item Calculate test statistic and compute p-value.
+  \begin{align}
+    Z_{obs} = \frac{\hat{p} - p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}}
+  \end{align}
+\item Comapre p-value to $\alpha$. If $\alpha$ not provided use $\alpha = 0.05$
+\item Write conclution in context
+\end{enumerate}
+
+\subsection{$\mu$; Unknown $\sigma$}
+\begin{enumerate}
+\item Write $H_0$ and $H_a$ and define parameters.
+\item Check assumptions.
+  \begin{enumerate}
+  \item (Simple) Random sample
+  \item $\sigma$ is not known
+  \item X is normal or $n \geq 30$. NOTE: may need to use graph of data to check reasonably symmetric data if n is to small as this is often when this is applied.
+  \end{enumerate}
+\item Calculate test statistic and compute p-value.
+  \begin{align}
+    t_{obs} = \frac{\overbar{x} - \mu_0}{\frac{s}{\sqrt{n}}}
+  \end{align}
+\item Comapre p-value to $\alpha$. If $\alpha$ not provided use $\alpha = 0.05$
+\item Write conclution in context
+\end{enumerate}
+
+\subsection{Errors and Power}
+\begin{center}
+  \begin{tabular}{|c|c|c|}
+    \hline
+    & Reject $H_0$ & Do Not Reject $H_0$ \\
+    \hline
+    $H_0$ true & type I & \\
+    \hline
+    $H_0$ false & power & type II \\
+    \hline
+  \end{tabular}
+\end{center}
+
+\begin{align}
+  type I = \alpha
+\end{align}
+
+\subsubsection{Calculating Type II}
+\begin{enumerate}
+\item Calculate cuttoff using percentiles.
+\item Calculate probability of getting cuttoff value using the provided true mean.
+  \begin{enumerate}
+  \item Less than becomes greater than
+  \item Greater than becomes less than
+  \item Not equal becomes between
+  \end{enumerate}
+\end{enumerate}
