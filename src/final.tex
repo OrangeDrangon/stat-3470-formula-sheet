@@ -1,6 +1,6 @@
 \section{Basics of Linear Regression}
 \begin{align}
-  r = \frac{1}{n-1} \sum_{i=1}^n \left( \frac{x_i - \overbar{x}}{s_X)}  \right) \left( \frac{y_i - \overbar{y}}{s_Y)}  \right) \\
+  r = \frac{1}{n-1} \sum_{i=1}^n \left( \frac{x_i - \overbar{x}}{s_X}  \right) \left( \frac{y_i - \overbar{y}}{s_Y}  \right) \\
   y = f(x) + \epsilon \\
   \hat{Y} = \hat{\beta_0} + \hat{\beta_1}x \\
   \hat{\beta_1} = \frac{S_{XY}}{S_{XX}} \\
@@ -58,16 +58,17 @@
 
 \section{Inference for $\beta_1$}
 \begin{align}
-  \hat{\beta_1} \sim N(\beta_1, \frac{\sigma^2}{S_{XX}} \\
-  \hat{\beta_1} \pm t_{\frac{\alpha}{2},n-p-1} * \frac{s}{\sqrt{S_{XX}}} \\
+  \hat{\beta_1} \sim N(\beta_1, \frac{\sigma^2}{S_{XX}}) \\
+  CI = \hat{\beta_1} \pm t_{\frac{\alpha}{2},n-p-1} * \frac{s}{\sqrt{S_{XX}}} \\
   t_{obs} = \sqrt{S_{XX}}\frac{\hat{\beta_1} - \hat{\beta_{10}}}{s}
 \end{align}
 
 \section{Inference for $\mu_{Y|X=x^*}$}
 \begin{align}
   Var(\hat{Y}) = \sigma^2 \left[ \frac{1}{n} + \frac{(x^* - \overbar{x})^2}{S_{XX}} \right] \\
+  t_{obs} = \frac{\mu_{Y|X=? - \mu_0}}{\sqrt{Var(\hat{Y})}} \\
   CI = \hat{Y} \pm t_{\frac{\alpha}{2}, n-p-1} * \sqrt{Var(\hat{Y})} \\
-  PI = \hat{Y} \pm t_{\frac{\alpha}{2}, n-p-1} * \sqrt{1 + \frac{1}{n} + \frac{(x^* - \overbar{x})^2}{S_{XX}}}
+  PI = \hat{Y} \pm t_{\frac{\alpha}{2}, n-p-1} * \sqrt{\sigma^2\left[ 1 + \frac{1}{n} + \frac{(x^* - \overbar{x})^2}{S_{XX}}\right]} \\
   PI = \hat{Y} \pm t_{\frac{\alpha}{2}, n-p-1} * \sqrt{s^2 + s_{\hat{Y}}^2}
 \end{align}
 
